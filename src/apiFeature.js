@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { abi } from "../artifacts/contracts/Counter.sol/Counter.json";
 
 // Variables
-const address = "0x9A676e781A523b5d0C0e43731313A708CB607508";
+const address = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 // Getting the provider from metamask (connects to the blockchain)
 const getProvider = () => {
