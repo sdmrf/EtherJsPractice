@@ -1,18 +1,16 @@
-import hre from "hardhat";
+async function main() {
+  const [deployer] = await ethers.getSigners();
 
-const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-const unlockTime = currentTimestampInSeconds + 60;
+  console.log("Deploying contracts with the account:", deployer.address);
 
-const lockedAmount = hre.ethers.parseEther("0.001");
+  const counter = await ethers.deployContract("Counter");
 
-const counter = await ethers.deployContract("Counter", [unlockTime], {
-  value: lockedAmount,
-});
+  console.log("Counter address:", await counter.getAddress());
+}
 
-await lock.waitForDeployment();
-
-console.log(
-  `Counter with ${ethers.formatEther(
-    lockedAmount
-  )}ETH and unlock timestamp ${unlockTime} deployed to ${counter.target}`
-);
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
